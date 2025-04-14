@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+
+  
+</head>
+<body >
+    <div class="w-75 mx-auto my-3">
+       <div class="form-floating mb-3  ">
+        <input type="text" class="form-control  " id="productName" placeholder="productName">
+        <label for="productName">productName</label>
+       </div>
+
+       <div class="form-floating mb-3">
+        <input type="number" class="form-control " id="productPrice" placeholder="productPrice">
+        <label for="productPrice">productPrice</label>
+       </div> 
+
+       <div class="form-floating mb-3">
+       <input list="data" type="text" class="form-control " id="productCatgory" placeholder="productCatgory">
+       <label class="bg" for="productCatgory">productCatgory</label>
+       <datalist id="data">
+          <option value="Tv"></option>
+          <option value="Mopile"></option>
+          <option value="elctroincs"></option>
+       </datalist>
+
+       </div>
+     
+       <div class="form-floating mb-3">
+        <textarea  class="form-control " id="productDesc" placeholder="productDesc"></textarea>
+        <label for="productDesc">productDescription</label>
+       </div>
+
+       <div class="form-floating mb-3 ">
+        <input type="file" class="form-control " id="productImg" placeholder="productImg"></input>
+        <label for="productImg">product Img</label>
+       </div>
+
+       <button onclick="addProdact()" class="btn btn-info" >Add prodact</button>
+       <button onclick="clearData()" class="btn btn-info" >remove data of products</button>
+       <button onclick="" class="btn btn-warning" >update prodact</button>
+       
+     
+
+    </div>
+  <div  class="container">
+    <div class="m-3 ">
+      <input oninput="searchProduct()"  type="text" class="form-control " id="searchProduct" placeholder="search product"></input>
+     
+     </div>
+    <div id="dis" class="row">
+     
+  </div>
+</div>
+    <script src="js/javascript.js" ></script>
+    <script src="js/bootstrap.min.js" ></script>
+</body>
+</html>
