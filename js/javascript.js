@@ -3,6 +3,9 @@ var productPriceInput= document.getElementById('productPrice');
 var productCatgoryInput= document.getElementById('productCatgory');
 var productDescInput= document.getElementById('productDesc');
 var productSearchInput= document.getElementById('searchProduct');
+var addBtn= document.getElementById('addBtn');
+var clearBtn= document.getElementById('clearBtn');
+var updateBtn= document.getElementById('updateBtn');
 var contaenr=[];
 if (localStorage.getItem('product') !== null) {
     contaenr =JSON.parse(localStorage.getItem('product'));
@@ -50,7 +53,7 @@ function displayProduct(){
             <h3 class="h5"> <span class="fw-bolder">Price :</span> ${contaenr[i].price}</h3>
             <h3 class="h5"> <span class="fw-bolder">Catgory :</span> ${contaenr[i].catogry}</h3>
              <button onclick="deleteProduct(${i}) " class="btn btn-outline-danger w-100 m-1 " >Delete <i class="fas fa-trash"></i></button>
-             <button  class="btn btn-outline-warning w-100 m-1 " >update <i class="fas fa-trash"></i></button>
+             <button onclick="setFormUpdate(${i})" class="btn btn-outline-warning w-100 m-1 " >update <i class="fas fa-trash"></i></button>
             </div>
     </div>
 
@@ -93,5 +96,31 @@ if (contaenr[i].code.toLowerCase().includes(term.toLowerCase())) {
 
 
 document.getElementById('dis').innerHTML=pox;
+
+}
+
+var i ;
+function setFormUpdate(index){
+    i=index;
+    addBtn.classList.add('d-none');
+    clearBtn.classList.add('d-none');
+    updateBtn.classList.remove('d-none');
+    productNameInput.value=contaenr[index].code;
+    productPriceInput.value=contaenr[index].price;
+    productCatgoryInput.value=contaenr[index].catogry;
+    productDescInput.value=contaenr[index].description;
+
+
+}
+
+function updateProduct(i){
+
+contaenr[i].code=productNameInput.value;
+contaenr[i].price=productPriceInput.value;
+contaenr[i].catogry=productCatgoryInput.value;
+contaenr[i].description=productDescInput.value;
+displayProduct();
+localStorage.setItem('product' , JSON.stringify(contaenr));
+clearForm();
 
 }
