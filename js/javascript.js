@@ -10,7 +10,7 @@ var updateBtn= document.getElementById('updateBtn');
 var contaenr=[];
 if (localStorage.getItem('product') !== null) {
     contaenr =JSON.parse(localStorage.getItem('product'));
-    displayProduct();
+    displayProduct(contaenr);
 }
 
 function addProdact(){
@@ -25,14 +25,14 @@ function addProdact(){
     }
     contaenr.push(product);
     clearForm();
-    displayProduct();
+    displayProduct(arr);
     localStorage.setItem('product' , JSON.stringify(contaenr))
 }
 
 function clearData(){
     localStorage.removeItem('product');
     contaenr=[];
-    displayProduct();
+    displayProduct(arr);
 }
 
 
@@ -43,18 +43,18 @@ function clearForm(){
     productPriceInput.value=null;
 }
 
-function displayProduct(){
+function displayProduct(arr){
     
     var pox ='';
-    for (let i = 0; i < contaenr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
      pox+=`
         <div class="col-2 py-2 ">
             <div class="product ">
-            <img class="w-100" src="${contaenr[i].img}" alt="productimg">
-            <h2 class="h4">${contaenr[i].code}</h2>
-            <p class="text-secondary">${contaenr[i].description}</p>
-            <h3 class="h5"> <span class="fw-bolder">Price :</span> ${contaenr[i].price}</h3>
-            <h3 class="h5"> <span class="fw-bolder">Catgory :</span> ${contaenr[i].catogry}</h3>
+            <img class="w-100" src="${arr[i].img}" alt="productimg">
+            <h2 class="h4">${arr[i].code}</h2>
+            <p class="text-secondary">${arr[i].description}</p>
+            <h3 class="h5"> <span class="fw-bolder">Price :</span> ${arr[i].price}</h3>
+            <h3 class="h5"> <span class="fw-bolder">Catgory :</span> ${arr[i].catogry}</h3>
              <button onclick="deleteProduct(${i}) " class="btn btn-outline-danger w-100 m-1 " >Delete <i class="fas fa-trash"></i></button>
              <button onclick="setFormUpdate(${i})" class="btn btn-outline-warning w-100 m-1 " >update <i class="fas fa-trash"></i></button>
             </div>
@@ -68,7 +68,7 @@ function displayProduct(){
 
 function deleteProduct(index){
 contaenr.splice(index ,1);
-displayProduct();
+displayProduct(arr);
 localStorage.setItem('product' , JSON.stringify(contaenr))
 }
 
@@ -78,28 +78,19 @@ localStorage.setItem('product' , JSON.stringify(contaenr))
 
 function searchProduct(){
      var term = productSearchInput.value;
-     var pox =``;
+    var termProduct = [];
+
+    
     
 for (var i = 0; i < contaenr.length; i++) {
    
 if (contaenr[i].code.toLowerCase().includes(term.toLowerCase())) {
-    pox+=`
-        <div class="col-2 py-2 ">
-            <div class="product ">
-            <img class="w-100" src="img/${productImgInput.files[i].name}" alt="productimg">
-            <h2 class="h4">${contaenr[i].code}</h2>
-            <p class="text-secondary">${contaenr[i].description}</p>
-            <h3 class="h5"> <span class="fw-bolder">Price :</span> ${contaenr[i].price}</h3>
-            <h3 class="h5"> <span class="fw-bolder">Catgory :</span> ${contaenr[i].catogry}</h3>
-             <button onclick="deleteProduct(${i}) " class="btn btn-outline-danger w-100 m-1 " >Delete <i class="fas fa-trash"></i></button>
-             <button  class="btn btn-outline-warning w-100 m-1 " >update <i class="fas fa-trash"></i></button>
-            </div>
-    </div> `
+   termProduct.push(contaenr[i]);
   }
 }
 
 
-document.getElementById('dis').innerHTML=pox;
+displayProduct(termProduct);
 
 }
 
