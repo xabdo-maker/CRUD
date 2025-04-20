@@ -3,6 +3,7 @@ var productPriceInput= document.getElementById('productPrice');
 var productCatgoryInput= document.getElementById('productCatgory');
 var productDescInput= document.getElementById('productDesc');
 var productSearchInput= document.getElementById('searchProduct');
+var productImgInput= document.getElementById('productImg');
 var addBtn= document.getElementById('addBtn');
 var clearBtn= document.getElementById('clearBtn');
 var updateBtn= document.getElementById('updateBtn');
@@ -13,12 +14,14 @@ if (localStorage.getItem('product') !== null) {
 }
 
 function addProdact(){
+  
+    
     var product={
         code: productNameInput.value ,
         price: productPriceInput.value ,
         catogry: productCatgoryInput.value ,
         description:productDescInput.value,
-        img:'fxx',
+        img:`img/${productImgInput.files[0].name}`,
     }
     contaenr.push(product);
     clearForm();
@@ -47,7 +50,7 @@ function displayProduct(){
      pox+=`
         <div class="col-2 py-2 ">
             <div class="product ">
-            <img class="w-100" src="img/poy.png" alt="productimg">
+            <img class="w-100" src="${contaenr[i].img}" alt="productimg">
             <h2 class="h4">${contaenr[i].code}</h2>
             <p class="text-secondary">${contaenr[i].description}</p>
             <h3 class="h5"> <span class="fw-bolder">Price :</span> ${contaenr[i].price}</h3>
@@ -74,15 +77,16 @@ localStorage.setItem('product' , JSON.stringify(contaenr))
 
 
 function searchProduct(){
-    var term = productSearchInput.value;
-    var pox =``;
+     var term = productSearchInput.value;
+     var pox =``;
+    
 for (var i = 0; i < contaenr.length; i++) {
    
 if (contaenr[i].code.toLowerCase().includes(term.toLowerCase())) {
     pox+=`
         <div class="col-2 py-2 ">
             <div class="product ">
-            <img class="w-100" src="img/poy.png" alt="productimg">
+            <img class="w-100" src="img/${productImgInput.files[i].name}" alt="productimg">
             <h2 class="h4">${contaenr[i].code}</h2>
             <p class="text-secondary">${contaenr[i].description}</p>
             <h3 class="h5"> <span class="fw-bolder">Price :</span> ${contaenr[i].price}</h3>
@@ -114,7 +118,9 @@ function setFormUpdate(index){
 }
 
 function updateProduct(i){
-
+    addBtn.classList.remove('d-none');
+    clearBtn.classList.remove('d-none');
+    updateBtn.classList.add('d-none');
 contaenr[i].code=productNameInput.value;
 contaenr[i].price=productPriceInput.value;
 contaenr[i].catogry=productCatgoryInput.value;
