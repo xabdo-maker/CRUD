@@ -105,6 +105,7 @@ function setFormUpdate(index){
     productPriceInput.value=contaenr[index].price;
     productCatgoryInput.value=contaenr[index].catogry;
     productDescInput.value=contaenr[index].description;
+   /* productImgInput.value=contaenr[index].img;*/
 
 
 }
@@ -117,7 +118,7 @@ contaenr[i].code=productNameInput.value;
 contaenr[i].price=productPriceInput.value;
 contaenr[i].catogry=productCatgoryInput.value;
 contaenr[i].description=productDescInput.value;
-displayProduct();
+displayProduct(contaenr);
 localStorage.setItem('product' , JSON.stringify(contaenr));
 clearForm();
 
