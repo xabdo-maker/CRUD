@@ -15,24 +15,24 @@ if (localStorage.getItem('product') !== null) {
 
 function addProdact(){
   
-    
+    // ? => optional change
     var product={
         code: productNameInput.value ,
         price: productPriceInput.value ,
         catogry: productCatgoryInput.value ,
         description:productDescInput.value,
-        img:`img/${productImgInput.files[0].name}`,
+        img:`img/${productImgInput.files[0]?.name}`,
     }
     contaenr.push(product);
-    clearForm();
-    displayProduct(arr);
+    displayProduct(contaenr);
     localStorage.setItem('product' , JSON.stringify(contaenr))
+    clearForm();
 }
 
 function clearData(){
     localStorage.removeItem('product');
     contaenr=[];
-    displayProduct(arr);
+    displayProduct(contaenr);
 }
 
 
@@ -41,6 +41,7 @@ function clearForm(){
     productNameInput.value=null;
     productCatgoryInput.value=null;
     productPriceInput.value=null;
+    productImgInput.value=null;
 }
 
 function displayProduct(arr){
@@ -68,7 +69,7 @@ function displayProduct(arr){
 
 function deleteProduct(index){
 contaenr.splice(index ,1);
-displayProduct(arr);
+displayProduct(contaenr);
 localStorage.setItem('product' , JSON.stringify(contaenr))
 }
 
