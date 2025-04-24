@@ -105,7 +105,7 @@ function setFormUpdate(index){
     productPriceInput.value=contaenr[index].price;
     productCatgoryInput.value=contaenr[index].catogry;
     productDescInput.value=contaenr[index].description;
-   /* productImgInput.value=contaenr[index].img;*/
+    // productImgInput.value=contaenr[index].img;
 
 
 }
@@ -121,5 +121,32 @@ contaenr[i].description=productDescInput.value;
 displayProduct(contaenr);
 localStorage.setItem('product' , JSON.stringify(contaenr));
 clearForm();
+
+}
+
+
+function validatInput(element){
+
+var regex={
+    productName:/^[A-Z]/,
+    productPrice:/^[1-9]/ ,
+}
+
+if (regex[element.id].test(element.value)== true) {
+
+    element.classList.add('is-valid')
+    element.classList.remove('is-invalid')
+    element.nextElementSibling.classList.replace('d-block','d-none')
+    
+}
+
+else{
+    element.classList.remove('is-valid')
+    element.classList.add('is-invalid')
+    element.nextElementSibling.classList.replace('d-none','d-block')
+    
+}
+
+
 
 }
